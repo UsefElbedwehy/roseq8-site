@@ -1,0 +1,11 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "2Z4VXT4SKV.Usef.Emira.Zuhoor24.App-Customer",
+        "paths": ["/p/*", "/c/*"]
+      }
+    ]
+  }
+}

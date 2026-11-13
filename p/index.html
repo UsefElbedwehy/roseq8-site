@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="apple-itunes-app" content="app-id=6784799572">
+<title>ورد الكويت</title>
+<style>
+  body { margin: 0; font-family: -apple-system, "Segoe UI", Tahoma, sans-serif; background: #f6f5fa; color: #1c1d3a; }
+  main { max-width: 480px; margin: 0 auto; padding: 24px 20px 40px; text-align: center; }
+  img { width: 100%; border-radius: 20px; aspect-ratio: 1; object-fit: cover; background: #e8e6f0; }
+  h1 { font-size: 22px; margin: 18px 0 6px; }
+  .price { color: #23463a; font-size: 20px; font-weight: 700; margin-bottom: 22px; }
+  a.btn { display: block; padding: 15px; border-radius: 14px; text-decoration: none; font-weight: 700; margin-top: 12px; }
+  a.primary { background: #2a2d58; color: #fff; }
+  a.secondary { background: #fff; color: #2a2d58; border: 1px solid #d9d7e6; }
+</style>
+</head>
+<body>
+<main>
+  <img id="photo" alt="" hidden>
+  <h1 id="name">ورد الكويت</h1>
+  <div class="price" id="price"></div>
+  <a class="btn primary" id="open" href="#">افتح في التطبيق</a>
+  <a class="btn secondary" href="https://apps.apple.com/app/id6784799572">حمّل التطبيق</a>
+</main>
+<script>
+  var API = "https://jczqbwhqqmltkidgypfa.supabase.co/functions/v1/api";
+  var id = decodeURIComponent(location.pathname.split("/").filter(Boolean).pop() || "");
+  document.getElementById("open").href = "wardkuwait://product/" + encodeURIComponent(id);
+  fetch(API + "/products/" + encodeURIComponent(id))
+    .then(function (r) { return r.ok ? r.json() : null; })
+    .then(function (p) {
+      if (!p) return;
+      document.getElementById("name").textContent = (p.name && (p.name.ar || p.name.en)) || "ورد الكويت";
+      var size = p.sizes && p.sizes[0];
+      if (size) document.getElementById("price").textContent = size.price + " د.ك";
+      if (p.images && p.images[0]) {
+        var img = document.getElementById("photo");
+        img.src = p.images[0].replace("/object/public/", "/render/image/public/") + "?width=900&quality=75";
+        img.hidden = false;
+      }
+    });
+</script>
+</body>
+</html>

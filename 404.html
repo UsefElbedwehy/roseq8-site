@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ورد الكويت</title>
+<link rel="icon" href="/assets/favicon.png">
+<script>
+  // GitHub Pages has no rewrites: every unknown path lands here.
+  // /p/<id> (product share) and /v/<id> (gift video) load their page in place,
+  // keeping the URL, because those pages read the id from location.pathname.
+  (function () {
+    var m = location.pathname.match(/^\/(p|v)\/[^/]+\/?$/);
+    if (!m) return;
+    document.documentElement.style.visibility = "hidden";
+    fetch("/" + m[1] + "/").then(function (r) { return r.text(); }).then(function (html) {
+      document.open(); document.write(html); document.close();
+    }, function () { document.documentElement.style.visibility = ""; });
+  })();
+</script>
+<style>
+  body{margin:0;min-height:100vh;display:grid;place-items:center;background:#FFFAFB;color:#8E1B45;
+       font-family:"IBM Plex Sans Arabic",system-ui,sans-serif;text-align:center;padding:16px}
+  a{display:inline-block;margin-top:16px;padding:12px 22px;border-radius:999px;background:#C2255C;color:#fff;text-decoration:none}
+  h1{margin:0 0 8px;font-size:28px}
+  p{margin:0;color:#6b4a57}
+</style>
+</head>
+<body>
+<main>
+  <h1>الصفحة غير موجودة</h1>
+  <p>Page not found</p>
+  <a href="/">الرئيسية</a>
+</main>
+</body>
+</html>
